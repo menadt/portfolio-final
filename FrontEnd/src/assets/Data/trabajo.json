@@ -1,0 +1,25 @@
+{
+    "experiencia": [
+        {
+            "descripcion": "Organización General - Coordinación pedagógica",
+            "nombreInstitucion": "Actividades Moebius",
+            "fechaInicio": "2008-03-01",
+            "urlLogo": "https://actividadesmoebius.files.wordpress.com/2020/11/web-cover-1.png",
+            "urlInstitucion": "https://actividadesmoebius.com/"
+        },
+        {
+            "descripcion": "Profesor de Educación Física",
+            "nombreInstitucion": "Colegio Paideia",
+            "fechaInicio": "2004-04-01",
+            "urlLogo": "http://www.orientapadres.com.ar/institucion/105/colegio-paideia/logo",
+            "urlInstitucion": "http://www.colegiopaideia.edu.ar/new/index.php"
+        },
+        {
+            "descripcion": "Organización de eventos deportivos y recreativos",
+            "nombreInstitucion": "BePlus",
+            "fechaInicio": "2015-03-01",
+            "urlLogo": "https://beplus.com.ar/images/logo-footer.png",
+            "urlInstitucion":"https://beplus.com.ar/"
+        }
+    ]
+}

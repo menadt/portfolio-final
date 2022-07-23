@@ -1,0 +1,19 @@
+.logo{
+    border-radius: 10px;
+    width: 80%;
+    max-height: 100px;
+}
+
+div{
+    color: #1f1106;
+  }
+
+.tarjeta{
+    border: 1px solid #4e3c2c;
+    border-radius: 10px;
+    padding-bottom: 2em;
+    margin:1em 4em; 
+    display:flex; 
+    justify-items: center; 
+    align-items: center;
+}

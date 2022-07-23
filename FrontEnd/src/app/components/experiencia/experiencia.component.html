@@ -1,0 +1,114 @@
+<div class="container-fluid">
+        <p class="h1 titulofluid">Experiencia</p>     
+            <div *ngFor="let item of experiencia; let indice=index" class="row" style="display: inline-flex; margin-left: 1em;">
+                <div class="card" style="width: 18rem; display: inline-flex; margin-left: 5rem;margin-bottom: 3rem;justify-content:center;">
+                    <img [src]="item.urlLogo" class="card-img-top logo" alt="Logo" style="height:100px;">
+                    <div class="card-body">
+                        <p class="card-title" style="font-size: large; font-weight: 500;">{{item.descripcion}}</p>
+                        <p class="card-text">{{item.nombreInstitucion}}<br>Desde el año {{item.fechaInicio}}</p>
+                        <a [href]="item.urlInstitucion" class="btn btn-primary" style="margin-right: 65px;" target="_blank">Ir a ver</a>
+                        <button *ngIf=recibologueado mat-mini-fab color="warn" style="margin-right: 10px; justify-self: center"
+                        type="button" data-bs-toggle="modal" data-bs-target="#experienciaModal"
+                        (click)="mostrarExperiencia(indice)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button *ngIf=recibologueado mat-mini-fab color="basic"
+                        type="button" data-bs-toggle="modal" data-bs-target="#borrarExperiencia" >
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                
+
+            </div>
+
+            <button *ngIf=recibologueado mat-mini-fab color="accent" style="margin-left: 50px;"
+            type="button" data-bs-toggle="modal" data-bs-target="#experienciaModal">
+                <mat-icon>add</mat-icon>
+            </button>
+</div>
+
+<hr>
+            
+
+<!-- Modal -->
+<div class="modal fade" id="experienciaModal" tabindex="-1" aria-labelledby="experienciaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="experienciaModalLabel">Experiencia Laboral</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="cerrarFormularioExperiencia" (click)="resetearFormulario()"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="form">
+                    <div class="mb-3">
+                        <label for="nombreInstitucion" class="form-label">Nombre de la Institución</label>
+                        <input type="text" class="form-control" id="nombreInstitucion" formControlName="nombreInstitucion" placeholder="Nombre de la Instiución">
+                        <div *ngIf="nombreInstitucion?.invalid && (nombreInstitucion?.touched)" class="text-danger">
+                            Debe completar un nombre para la Institución
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="esActual" class="form-label">¿Es actual? </label>
+                        <select class="form-control" id="esActual" formControlName="esActual">
+                            <option value="1">Sí</option>
+                            <option value="0">No</option>
+                        </select>
+                        <div *ngIf="esActual?.invalid && (esActual?.touched)" class="text-danger">
+                            Debe indicar si el trabajo es actual o no.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
+                        <input type="date" class="form-control" id="fechaInicio" formControlName="fechaInicio">
+                        <div *ngIf="fechaInicio?.invalid && (fechaInicio?.touched)" class="text-danger">
+                            Debe completar una fecha de inicio.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fechaFinal" class="form-label">Última fecha de trabajo</label>
+                        <input type="date" class="form-control" id="fechaFinal" formControlName="fechaFinal">
+                    </div>
+                    <div class="mb-3">
+                        <label for="urlInstitucion" class="form-label">URL Institución</label>
+                        <input type="text" class="form-control" id="urlInstitucion" formControlName="urlInstitucion" placeholder="http://">
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripcion del trabajo</label>
+                        <input type="text" class="form-control" id="descripcion" formControlName="descripcion" placeholder="Descripción del trabajo.">
+                        <div *ngIf="descripcion?.invalid && (descripcion?.touched)" class="text-danger">
+                            Debe completar una descripción sobre su rol en el trabajo.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="urlLogo" class="form-label">Logo Institucion</label>
+                        <input type="text" class="form-control" id="urlLogo" formControlName="urlLogo" placeholder="http://">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetearFormulario()">Cancelar</button>
+                <button type="button" class="btn btn-primary" (click)="guardarFormulario()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de borrar -->
+<div class="modal fade" id="borrarExperiencia" tabindex="-1" aria-labelledby="borrarExperienciaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="borrarExperienciaLabel">Borrar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label for="confirmar" class="form-label">¿Estás Segurx?</label>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Sí</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            </div>
+        </div>
+</div>

@@ -1,0 +1,111 @@
+<div class="container-fluid">
+    <p class="h1 titulofluid"> Proyectos</p>
+    <mat-card style="background-color: transparent;">
+        <div *ngFor="let item of proyecto; let indice=index" class="row" style="padding-bottom: 2em;">
+            <p class="h4">{{item.nombre}}</p>
+            <p class="h6">{{item.descripcion}}</p>
+            <p class="h6">{{item.anio}}</p>
+            <p class="h6">{{item.url_proyecto}}</p>
+            <ul class="mdc-image-list my-image-list">
+                <li class="mdc-image-list__item">
+                    <div class="mdc-image-list__image-aspect-container">
+                        <div *ngFor="let foto of item.url_images">
+                            <img class="mdc-image-list__image" [src]=foto>
+                        </div>
+                    </div>
+                    <div class="mdc-image-list__supporting">
+                        <span class="mdc-image-list__label"><p>{{item.nombre}}</p></span>
+                    </div>
+                </li>
+                
+            </ul>
+            
+            <div>
+                <button *ngIf=recibologueado mat-mini-fab color="warn" type="button" data-bs-toggle="modal"
+                    data-bs-target="#proyectosModal" style="margin-right: 1em;"
+                    (click)="mostrarProyectos(indice)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button *ngIf=recibologueado mat-mini-fab color="basic" type="button" data-bs-toggle="modal"
+                    data-bs-target="#borrarproyectosModal">
+                    <mat-icon>delete</mat-icon>
+            
+                </button>
+            </div>
+        </div>        
+        <button *ngIf=recibologueado mat-mini-fab color="accent" style="left: 50%;"
+        type="button" data-bs-toggle="modal"
+                    data-bs-target="#proyectosModal">
+            <mat-icon>add</mat-icon>
+        </button>
+    </mat-card>
+</div>
+
+<!-- Modal editar agregar-->
+<div class="modal fade" id="proyectosModal" tabindex="-1" aria-labelledby="proyectosModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="proyectosModalLabel">Proyecto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="cerrarFormularioproyecto" (click)="resetearFormulario()"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="form">
+                    <div class="mb-3">
+                        <label for="nombreProyecto" class="form-label">Proyecto</label>
+                        <input type="text" class="form-control" id="nombreProyecto" formControlName="nombreProyecto" placeholder="Nombre del Proyecto"
+                        [ngClass]="{'is-invalid': nombreProyecto?.errors && (nombreProyecto?.touched), 'is-valid':!nombreProyecto?.errors && (nombreProyecto?.touched)}">
+                        <div *ngIf="nombreProyecto?.invalid && (nombreProyecto?.touched)" class="text-danger">
+                            Debe completar un nombre para el proyecto.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="anio" class="form-label">Año</label>
+                        <input type="number" min="1960" inputmode="numeric" class="form-control" id="anio" formControlName="anio" placeholder="YYYY">
+                        <div *ngIf="anio?.invalid && (anio?.touched)" class="text-danger">
+                            <div *ngIf="anio?.errors?.['required']" class="text-danger">
+                                El año es obligatorio.
+                            </div>
+                            <div *ngIf="anio?.errors?.['min']" class="text-danger">
+                                El año debe ser válido (superior a "1960").
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripcion del trabajo</label>
+                        <input type="text" class="form-control" id="descripcion" formControlName="descripcion" placeholder="Descripción del proyecto">
+                        <div *ngIf="descripcion?.invalid && (descripcion?.touched)" class="text-danger">
+                            Debe completar una descripción.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="url" class="form-label">URL del proyecto</label>
+                        <input type="text" class="form-control" id="url" formControlName="url" placeholder="http://">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetearFormulario()">Cancelar</button>
+                <button type="button" class="btn btn-primary" (click)="guardarFormulario()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal borrar -->
+<div class="modal fade" id="borrarproyectosModal" tabindex="-1" aria-labelledby="borrarproyectosModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="borrarproyectosModalLabel">Borrar Proyecto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label for="confirmar" class="form-label">¿Estás Segurx?</label>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Sí</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button></div>
+        </div>
+    </div>
+</div>

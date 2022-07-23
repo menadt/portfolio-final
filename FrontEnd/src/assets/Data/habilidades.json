@@ -1,0 +1,19 @@
+{
+    "habilidad": [
+        {
+            "nombreHabilidad": "Inglés",
+            "descripcion": "Nivel bajo - intermedio. Conversación fluida",
+            "puntuacion": "4"
+        },
+        {
+            "nombreHabilidad": "Liderazgo",
+            "descripcion": "Mucha experiencia en conducción de equipos",
+            "puntuacion": "9"
+        },
+        {
+            "nombreHabilidad": "Empatía",
+            "descripcion": "sarasasara",
+            "puntuacion": "9"
+        }
+    ]
+}

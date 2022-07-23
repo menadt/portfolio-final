@@ -1,0 +1,111 @@
+<div class="container-fluid">
+        <p class="h1 titulofluid">Educación</p>
+            <div *ngFor="let item of educacion; let indice=index" class="row tarjeta">
+                    
+                    <div class="col-3">
+                        <img [src]="item.urlInstitucion" alt="Logo" class="logo">
+                    </div>
+                    <div class="col">
+                        <p class="h4" style="font-weight:500;">{{item.titulo}}</p>
+                        <p class="h6">{{item.institucion}}</p>                        
+                        <p class="h6" >Año: {{item.anio}}</p>
+                    </div>
+                    <div class="col-1">
+                        <button *ngIf=recibologueado mat-mini-fab color="warn"
+                        type="button" data-bs-toggle="modal" data-bs-target="#educacionModal"
+                        (click)="mostrarEducacion(indice)">
+                        <mat-icon>edit</mat-icon>
+                        </button>
+                    </div>
+                    <div class="col-1">
+                        <button *ngIf=recibologueado mat-mini-fab color="basic" type="button" data-bs-toggle="modal"
+                            data-bs-target="#borrareducacionModal">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        </div>                
+            </div>
+            <button *ngIf=recibologueado mat-mini-fab color="accent" style="left: 50%;"
+            type="button" data-bs-toggle="modal" data-bs-target="#educacionModal">
+                <mat-icon>add</mat-icon>
+            </button>
+        <hr>
+        </div>
+
+    <!-- Modal de editar / agregar-->
+    <div class="modal fade" id="educacionModal" tabindex="-1" aria-labelledby="educacionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="educacionModalLabel">Formación Académica</h5>
+                    <button type="button" id="cerrarEducacionModal" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="form">
+                        <div class="mb-3">
+                            <label for="titulo" class="form-label">Título de la carrera</label>
+                            <input type="text" class="form-control" id="titulo" formControlName="titulo" placeholder="Título">
+                            <div *ngIf="titulo?.invalid && (titulo?.touched)" class="text-danger">
+                                Es obligatorio completar el título.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recibido" class="form-label">¿Recibido?</label>
+                            <select class="form-control" id="recibido" formControlName="recibido">
+                                <option value="1">Sí</option>
+                                <option value="0">No</option>
+                            </select>
+                            <div *ngIf="recibido?.invalid && (recibido?.touched)" class="text-danger">
+                                Debe indicar si está recibido o no.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
+                            <input type="date" class="form-control" id="fechaInicio" formControlName="fechaInicio">
+                            <div *ngIf="fechaInicio?.invalid && (fechaInicio?.touched)" class="text-danger">
+                                Debe indicar una fecha de inicio.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fechaFinal" class="form-label">Última fecha de trabajo</label>
+                            <input type="date" class="form-control" id="fechaFinal" formControlName="fechaFinal">
+                        </div>
+                        <div class="mb-3">
+                            <label for="nombreInstitucion" class="form-label">Institución Educativa</label>
+                            <input type="text" class="form-control" id="nombreInstitucion" formControlName="nombreInstitucion" placeholder="Institución educativa">
+                            <div *ngIf="nombreInstitucion?.invalid && (nombreInstitucion?.touched)" class="text-danger">
+                                Debe indicar el nombre de la institucion.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="logoInstitucion" class="form-label">Logo Institucion</label>
+                            <input type="text" class="form-control" id="logoInstitucion" formControlName="logoInstitucion" placeholder="http://">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetearFormulario()" >Cancelar</button>
+                    <button type="button" class="btn btn-primary" (click)="guardarFormulario()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de borrar-->
+    <div class="modal fade" id="borrareducacionModal" tabindex="-1" aria-labelledby="borrareducacionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="borrareducacionModalLabel">Borrar Título Académico</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="confirmar" class="form-label">¿Estás Segurx?</label>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="borrarEducacion()">Sí</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                 </div>
+            </div>
+        </div>
+    </div>

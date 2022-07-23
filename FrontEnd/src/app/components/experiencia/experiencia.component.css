@@ -1,0 +1,12 @@
+p >h1{
+    color: black;
+}
+
+hr {
+ border-top: 3px; 
+ width: 90%;
+ color: white;
+ display:flex;
+ align-self: center;
+ margin-left: 4%;
+}

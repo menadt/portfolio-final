@@ -1,0 +1,22 @@
+{
+    "carrera": [
+        {
+            "titulo": "Bachiller con Orientación en Informática",
+            "institucion": "Escuelas Técnicas ORT",
+            "anio": "2001-12-15",
+            "urlInstitucion": "https://www.ort.edu.ar/img/LogoOrtArgWeb2017.jpg"
+        },
+        {
+            "titulo": "Licenciado en Educación Física",
+            "institucion": "Universidad Nacional de San Martín",
+            "anio": "2018-08-23",
+            "urlInstitucion": "https://www.unsam.edu.ar/img/logo-unsam-2020.png"
+        },
+        {
+            "titulo": "En Curso - Lic. en Cs de Datos",
+            "institucion": "Facultad de Cs Exactas, Universidad de Buenos Aires",
+            "anio": "En curso",
+            "urlInstitucion": "https://upload.wikimedia.org/wikipedia/commons/2/22/Logo_exactas.svg"
+        }
+    ]
+}
